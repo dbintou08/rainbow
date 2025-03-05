@@ -42,6 +42,16 @@ class CategoryResource extends Resource
       ->filters([]);
   }
 
+  // public static function getNavigationLabel(): string
+  // {
+  //   return '';
+  // }
+
+  public static function getLabel(): string
+  {
+    return 'Catégories';
+  }
+
   public static function getRelations(): array
   {
     return [];

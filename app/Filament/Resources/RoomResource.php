@@ -44,6 +44,16 @@ class RoomResource extends Resource
       ]);
   }
 
+  // public static function getNavigationLabel(): string
+  // {
+  //   return 'Nouvelle salle';
+  // }
+
+  public static function getLabel(): string
+  {
+    return 'Salles';
+  }
+
   public static function getPages(): array
   {
     return [

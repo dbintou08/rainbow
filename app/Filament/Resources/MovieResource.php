@@ -71,6 +71,16 @@ class MovieResource extends Resource
       ]);
   }
 
+  // public static function getNavigationLabel(): string
+  // {
+  //   return 'Nouveau film';
+  // }
+
+  public static function getLabel(): string
+  {
+    return 'Films';
+  }
+
   public static function getPages(): array
   {
     return [

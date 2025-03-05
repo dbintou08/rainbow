@@ -65,6 +65,16 @@ class ScreeningResource extends Resource
             ]);
   }
 
+  // public static function getNavigationLabel(): string
+  // {
+  //   return 'Nouvelle séance';
+  // }
+
+  public static function getLabel(): string
+  {
+    return 'Séances';
+  }
+
   public static function getPages(): array
   {
     return [
