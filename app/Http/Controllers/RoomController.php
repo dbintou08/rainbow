@@ -2,47 +2,37 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Salle;
 use Illuminate\Http\Request;
 
-class RoomController extends Controller
+class SalleController extends Controller
 {
-     /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        return Salle::all();
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $salle = Salle::create($request->all());
+        return response()->json($salle, 201);
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
-        //
+        return Salle::findOrFail($id);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
-        //
+        $salle = Salle::findOrFail($id);
+        $salle->update($request->all());
+        return response()->json($salle, 200);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
-        //
+        Salle::destroy($id);
+        return response()->json(null, 204);
     }
 }

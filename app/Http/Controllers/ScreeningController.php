@@ -2,47 +2,37 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Seance;
 use Illuminate\Http\Request;
 
-class ScreeningController extends Controller
+class SeanceController extends Controller
 {
-     /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        return Seance::all();
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $seance = Seance::create($request->all());
+        return response()->json($seance, 201);
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
-        //
+        return Seance::findOrFail($id);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
-        //
+        $seance = Seance::findOrFail($id);
+        $seance->update($request->all());
+        return response()->json($seance, 200);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
-        //
+        Seance::destroy($id);
+        return response()->json(null, 204);
     }
 }
