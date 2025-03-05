@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\MovieResource\Pages;
 use App\Models\Movie;
+use App\Models\Room;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
@@ -38,11 +39,16 @@ class MovieResource extends Resource
         ->schema([
           Forms\Components\Select::make('room_id')
             ->relationship('room', 'number')
-            ->required(),
+            ->required()
+            ->reactive() // Permet de détecter les changements
+                        ->afterStateUpdated(fn ($state, callable $set) =>
+                            $set('available_seats', Room::find($state)?->capacity ?? null)
+                        ),
           Forms\Components\DateTimePicker::make('datetime')
             ->required(),
           Forms\Components\TextInput::make('available_seats')
             ->required()
+            ->readOnly()
             ->numeric(),
         ])
         // ->orderable('datetime')

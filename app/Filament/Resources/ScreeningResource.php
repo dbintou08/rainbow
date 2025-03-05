@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\ScreeningResource\Pages;
 use App\Filament\Resources\ScreeningResource\RelationManagers;
+use App\Models\Room;
 use App\Models\Screening;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -28,11 +29,16 @@ class ScreeningResource extends Resource
           ->required(),
         Forms\Components\Select::make('room_id')
           ->relationship('room', 'number')
-          ->required(),
+          ->required()
+          ->reactive() // Permet de détecter les changements
+                        ->afterStateUpdated(fn ($state, callable $set) =>
+                            $set('available_seats', Room::find($state)?->capacity ?? null)
+                        ),
         Forms\Components\DateTimePicker::make('datetime')
           ->required(),
         Forms\Components\TextInput::make('available_seats')
           ->required()
+          ->readOnly()
           ->numeric(),
       ]);
   }
