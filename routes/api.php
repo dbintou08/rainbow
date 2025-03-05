@@ -3,22 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\MovieController;
-use App\Http\Controllers\ReservationController;
 
 // Routes pour Catégorie
-Route::apiResource('categories', CategoryController::class);
-
+Route::get('categories', [CategoryController::class, 'index']);
 // Routes pour Film
-Route::apiResource('movies', MovieController::class);
-
-// Routes pour Salle
-Route::apiResource('rooms', RoomController::class);
-
-// Routes pour Séance
-Route::apiResource('screenings', ScreeningController::class);
-
-// Routes pour Réservation
-Route::apiResource('reservations', ReservationController::class);
-
-// Routes pour Paiement
-Route::apiResource('payments', PaymentController::class);
+Route::get('movies', [MovieController::class, 'index']);
+Route::get('movies/{id}', [MovieController::class, 'show']);

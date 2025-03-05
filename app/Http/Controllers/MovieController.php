@@ -9,7 +9,10 @@ class MovieController extends Controller
 {
     public function index()
     {
-        return Movie::all();
+    return response()->json(
+      Movie::with('category')->get(),
+      200
+    );
     }
 
     public function show(string $id)
