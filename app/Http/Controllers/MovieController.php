@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 class MovieController extends Controller
 {
+    // Recuperer tous les films avec leur categorie
     public function index()
     {
     return response()->json(
@@ -17,7 +18,12 @@ class MovieController extends Controller
 
     public function show(string $id)
     {
-        return Movie::findOrFail($id);
+      $movie = Movie::with([
+        'category',               // Récupère la catégorie du film
+        'screenings.room'         // Récupère les séances avec leur salle
+      ])->findOrFail($id);
+
+      return response()->json($movie, 200);
     }
 
     public function destroy(string $id)
