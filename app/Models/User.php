@@ -53,4 +53,20 @@ class User extends Authenticatable
     {
         return $this->hasMany(Reservation::class);
     }
+
+    /**
+     * Retourne l'identifiant pour le JWT.
+     */
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+     /**
+     * Retourne les claims personnalisés (facultatif, peut être vide).
+     */
+
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
 }
