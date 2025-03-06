@@ -30,6 +30,9 @@ class MovieResource extends Resource
         Forms\Components\TextInput::make('duration')
           ->required()
           ->numeric(),
+      Forms\Components\TextInput::make('price')
+        ->nullable()
+        ->numeric(),
         Forms\Components\Textarea::make('description')
           ->maxLength(65535),
         Forms\Components\TextInput::make('image_url')
@@ -63,6 +66,7 @@ class MovieResource extends Resource
         Tables\Columns\TextColumn::make('title'),
         Tables\Columns\TextColumn::make('category.name'),
         Tables\Columns\TextColumn::make('duration'),
+        Tables\Columns\TextColumn::make('price'),
         Tables\Columns\TextColumn::make('description'),
         Tables\Columns\TextColumn::make('image_url'),
       ])
