@@ -15,6 +15,7 @@ class User extends Authenticatable
     /**
      * The attributes that are mass assignable.
      *
+     *  remplissage des chmp directement via des méthodes 
      * @var list<string>
      */
     protected $fillable = [
@@ -27,7 +28,7 @@ class User extends Authenticatable
 
 
     /**
-     * The attributes that should be hidden for serialization.
+     *  Les attributs qui doivent être cachés lors de la sérialisation
      *
      * @var list<string>
      */
@@ -52,21 +53,5 @@ class User extends Authenticatable
     public function reservations()
     {
         return $this->hasMany(Reservation::class);
-    }
-
-    /**
-     * Retourne l'identifiant pour le JWT.
-     */
-    public function getJWTIdentifier()
-    {
-        return $this->getKey();
-    }
-     /**
-     * Retourne les claims personnalisés (facultatif, peut être vide).
-     */
-
-    public function getJWTCustomClaims()
-    {
-        return [];
     }
 }
