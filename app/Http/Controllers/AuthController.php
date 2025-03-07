@@ -16,6 +16,7 @@ class AuthController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
+            // 'date_of_birth' => 'required|string',
             'password' => 'required|string|min:6',
         ]);
          // Crée un nouvel utilisateur avec les données validées
@@ -46,6 +47,7 @@ class AuthController extends Controller
         }
          // Retourne une réponse JSON avec le token JWT
         return response()->json([
+            'user' => auth()->user(),
             'token' => $token,
         ]);
     }
