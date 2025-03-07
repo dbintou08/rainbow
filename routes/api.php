@@ -6,6 +6,7 @@ use App\Http\Controllers\MovieController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\UserController;
 
 // Routes pour Catégorie
 Route::get('categories', [CategoryController::class, 'index']);
@@ -22,4 +23,5 @@ Route::middleware('auth:api')->group(function ()
 {
     Route::post('logout', [AuthController::class, 'logout']);
     Route::get('user', [AuthController::class, 'user']);
+    Route::get('/user/reservations', [UserController::class, 'getUserReservations']);
 });
